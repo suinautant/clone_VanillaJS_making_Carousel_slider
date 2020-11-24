@@ -72,6 +72,8 @@
     const SHOWING_CLASS = "showing";
     const firstSlide = document.querySelector(".slider__item:first-child");
     const lastSlide = document.querySelector(".slider__item:last-child");
+    // 전역 변수 : 슬라이드 Interval 중지하기 위한 변수
+    slideInterval = 0;
     function slide(){
       const currentSlide = document.querySelector(`.${SHOWING_CLASS}`);
       if(currentSlide){
@@ -105,10 +107,10 @@
     const controlForward = document.getElementById("control__forward");
     const controlAuto = document.getElementById("control__auto");
     function clickControlAuto(){
-      setInterval(slide, 1000);
+      slideInterval = setInterval(slide, 1000);
     }
     function clickControlPause(){
-      console.log("click pause");
+      clearInterval(slideInterval);
     }
     function clickControlForward(){
       slide("forward");
